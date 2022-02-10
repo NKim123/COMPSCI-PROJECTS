@@ -8,6 +8,8 @@ int main() {
 }
 
 void printBookInfo(){
+
+    //printing book info
     cout << setw(30) << right << "Serendipity Booksellers\n" << setw(28) << "Book Information\n\n";
     cout << "ISBN:" << setw(30) << right << "" << endl; 
     cout << "Title:" << setw(29) << right << "" << endl;

@@ -8,6 +8,10 @@ int main(){
 }
 
 void printReport(){
+    //declaring choice variable
+    int choice = 0;
+
+    //printing the report
     cout << right << setw(20) << "\nSerendipity Booksellers\n" << setw(16) << "Reports\n\n";
     cout << "1.  Inventory Listing\n";
     cout << "2.  Inventory Wholesale Value\n";
@@ -17,4 +21,7 @@ void printReport(){
     cout << "6.  Listing by Age\n";
     cout << "7.  Return to Main Menu\n\n";
     cout << "Enter Your Choice: ";
+
+    //getting the user's choice
+    cin >> choice;
 }
