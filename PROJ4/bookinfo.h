@@ -6,6 +6,6 @@
 using namespace std;
 
 //prototypes
-void bookInfo();
+void bookInfo(string, string, string, string, string, int, double, double);
 
 #endif

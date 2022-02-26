@@ -1,13 +1,26 @@
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
 //including the other functions
-#include "invmenu.h"
 #include "cashier.h"
 #include "bookinfo.h"
 #include "reports.h"
+#include "invmenu.h"
 
 using namespace std;
+
+const int SIZE = 20;
+
+//creating global arrays for the book info
+string bookTitle[SIZE];
+string isbn[SIZE];
+string author[SIZE];
+string publisher[SIZE];
+string dateAdded[SIZE];
+int qtyOnHand[SIZE];
+double wholesale[SIZE];
+double retail[SIZE];
+
 void printMenu();
 
 int main(){

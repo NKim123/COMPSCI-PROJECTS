@@ -1,4 +1,7 @@
 #include "invmenu.h"
+#include "bookinfo.h"
+
+const int SIZE = 20;
 
 void invMenu() {
 
@@ -44,11 +47,40 @@ void invMenu() {
 
 //stub functions
 void lookUpBook(){
-    cout << "You selected Look Up Book.";
+    string searchBook = "";
+    cout << "What book do you want to search for?\n";
+    getline(cin, searchBook);
+    for (int i = 0; i < SIZE; i++) {
+        if (searchBook == bookTitle[i]) {
+            bookInfo(isbn[i], bookTitle[i], author[i], publisher[i], dateAdded[i], qtyOnHand[i], wholesale[i], retail[i]);
+        }
+    }
+
 }
 
 void addBook() {
-    cout << "You selected Add Book.";
+    for (int i = 0; i < SIZE; i++) {
+        if (bookTitle[i] == ""){
+            cout << "Enter the book title: ";
+            getline(cin, bookTitle[i]);
+            cout << "Enter the ISBN: ";
+            getline(cin, isbn[i]);
+            cout << "Enter the author: ";
+            getline(cin, author[i]);
+            cout << "Enter the publisher: ";
+            getline(cin, publisher[i]);
+            cout << "Enter the date added: ";
+            getline(cin, dateAdded[i]);
+            cin.ignore();
+            cout << "Enter the quantity on hand: ";
+            cin >> qtyOnHand[i];
+            cout << "Enter the wholesale cost: ";
+            cin >> wholesale[i];
+            cout << "Enter the retail price: ";
+            cin >> retail[i];
+
+        }
+    }    
 }
 
 void editBook() {
