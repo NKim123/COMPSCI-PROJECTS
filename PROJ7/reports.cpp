@@ -64,7 +64,7 @@ void repListing() {
     cout << "You selected a listing report.\n";
     
     for (int i = 0; i < SIZE; i ++) {
-        bookInfo(isbn[i], bookTitle[i], author[i], publisher[i], dateAdded[i], qtyOnHand[i], wholesale[i], retail[i], false);
+        bookInfo(book[i].isbn, book[i].bookTitle, book[i].author, book[i].publisher, book[i].dateAdded, book[i].qtyOnHand, book[i].wholesale, book[i].retail, false);
     }
     string c = "";
     cout << "Enter c to continue: ";
@@ -76,13 +76,13 @@ void repListing() {
 
 void repWholesale() {
     cout << "You selected a wholesale report.\n";
-    double total = 0;
+    double total = 0.0;
     for (int i = 0; i < SIZE; i ++) {
-        cout << "Title: " << bookTitle[i] << endl;
-        cout << "ISBN: " << isbn[i] << endl;
-        cout << "Quantity On hand: " << qtyOnHand[i] << endl;
-        cout << "Wholesale Cost: " << wholesale[i] << endl;
-        total += wholesale[i] * qtyOnHand[i];
+        cout << "Title: " << book[i].bookTitle << endl;
+        cout << "ISBN: " << book[i].isbn << endl;
+        cout << "Quantity On hand: " << book[i].qtyOnHand << endl;
+        cout << "Wholesale Cost: " << book[i].wholesale << endl;
+        total += book[i].wholesale * book[i].qtyOnHand;
         cout << "\n\n";
     }
     cout << "Total Wholesale Value: " << total << endl;
@@ -98,12 +98,12 @@ void repRetail() {
     cout << "You selected retail report.\n";
     double total = 0;
     for (int i = 0; i < SIZE; i ++){
-        if (strcmp(bookTitle[i], "") != 0) {
-            cout << "Title: " << bookTitle[i] << endl;
-            cout << "ISBN: " << isbn[i] << endl;
-            cout << "Quantity On hand: " << qtyOnHand[i] << endl;
-            cout << "Retail Price: " << retail[i] << endl;
-            total += retail[i] * qtyOnHand[i];
+        if (strcmp(book[i].bookTitle, "") != 0) {
+            cout << "Title: " << book[i].bookTitle << endl;
+            cout << "ISBN: " << book[i].isbn << endl;
+            cout << "Quantity On hand: " << book[i].qtyOnHand << endl;
+            cout << "Retail Price: " << book[i].retail << endl;
+            total += book[i].retail * book[i].qtyOnHand;
             cout << "\n\n";
         }
     }
@@ -123,7 +123,8 @@ void repQty() {
     int idPtr[SIZE];
 
     for (int i = 0; i < SIZE; i ++) {
-        qtyPtr[i] = &qtyOnHand[i];
+        qtyPtr[i] = &book[i].qtyOnHand;
+        idPtr[i] = i;
     }
     
     //selection sorting the array
@@ -140,15 +141,17 @@ void repQty() {
         int *temp = qtyPtr[max_idx];
         qtyPtr[max_idx] = qtyPtr[i];
         qtyPtr[i] = temp;
+        int temp2 = idPtr[max_idx];
+        idPtr[max_idx] = idPtr[i];
+        idPtr[i] = temp2;
     } 
 
     //printing the sorted array
     for (int i = 0; i < SIZE; i ++) {
-        idPtr[i] = qtyPtr[i] - qtyOnHand;
-        if (strcmp(bookTitle[idPtr[i]], "") != 0) {
-            cout << "Title: " << bookTitle[idPtr[i]] << endl;
-            cout << "ISBN: " << isbn[idPtr[i]] << endl;
-            cout << "Quantity On hand: " << qtyOnHand[idPtr[i]] << endl;
+        if (strcmp(book[idPtr[i]].bookTitle, "") != 0) {
+            cout << "Title: " << book[idPtr[i]].bookTitle << endl;
+            cout << "ISBN: " << book[idPtr[i]].isbn << endl;
+            cout << "Quantity On hand: " << book[idPtr[i]].qtyOnHand << endl;
             cout << "\n\n";
         }
     }
@@ -166,7 +169,7 @@ void repCost() {
     double *costPtr[SIZE];
     int idPtr[SIZE];
     for (int i = 0; i < SIZE; i ++) {
-        costPtr[i] = &wholesale[i];
+        costPtr[i] = &book[i].wholesale;
     }
 
     //selection sorting the array
@@ -187,11 +190,10 @@ void repCost() {
 
     //printing the sorted array
     for (int i = 0; i < SIZE; i ++) {
-        idPtr[i] = costPtr[i]-&wholesale[0];
-        if (strcmp(bookTitle[idPtr[i]], "") != 0) {
-            cout << "Title: " << bookTitle[idPtr[i]] << endl;
-            cout << "ISBN: " << isbn[idPtr[i]] << endl;
-            cout << "Wholesale Cost: " << wholesale[idPtr[i]] << endl;
+        if (strcmp(book[idPtr[i]].bookTitle, "") != 0) {
+            cout << "Title: " << book[idPtr[i]].bookTitle << endl;
+            cout << "ISBN: " << book[idPtr[i]].isbn << endl;
+            cout << "Wholesale Cost: " << book[idPtr[i]].wholesale << endl;
             cout << "\n\n";
         }
     }
@@ -210,7 +212,7 @@ void repAge() {
     char *agePtr[SIZE];
     int idPtr[SIZE];
     for (int i = 0; i < SIZE-1; i ++) {   //make an array of pointers to the dateAdded array
-        agePtr[i] = dateAdded[i];
+        agePtr[i] = book[i].dateAdded;
         idPtr[i] = i;
     }
 
@@ -239,9 +241,9 @@ void repAge() {
     //printing the sorted array
     for (int i = 0; i < SIZE-1; i ++) {
         if (strcmp(agePtr[idPtr[i]], "") != 0) {
-            cout << "Title: " << bookTitle[idPtr[i]] << endl;
-            cout << "ISBN: " << isbn[idPtr[i]] << endl;
-            cout << "Date Added: " << dateAdded[idPtr[i]] << endl;
+            cout << "Title: " << book[idPtr[i]].bookTitle << endl;
+            cout << "ISBN: " << book[idPtr[i]].isbn << endl;
+            cout << "Date Added: " << book[idPtr[i]].dateAdded << endl;
             cout << "\n\n";
         }
     }

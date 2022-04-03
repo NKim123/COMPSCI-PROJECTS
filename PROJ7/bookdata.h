@@ -7,7 +7,8 @@
 
 using namespace std;
 
-struct BookData {
+class BookData {
+    public:
     char bookTitle[51];
     char isbn[14];
     char author[31];
@@ -17,17 +18,17 @@ struct BookData {
     double wholesale;
     double retail;
 
-    void setTitle(*str, int);
-    void setIsbn(*str, int);
-    void setAuthor(*str, int);
-    void setPub(*str, int);
-    void setDateAdded(*str, int);
-    void setQty(int, int);
-    void setWholesale(double, int);
-    void setRetail(double, int);
+    BookData();
 
-    int isEmpty(int);
-    int removeBook(int);
+    void setTitle(string title);
+    void setIsbn(string isbn);
+    void setAuthor(string author);
+    void setPublisher(string publisher);
+    void setDateAdded(string dateAdded);
+    void setQtyOnHand(int qtyOnHand);
+    void setWholesale(double wholesale);
+    void setRetail(double retail);
+
 };
 
 

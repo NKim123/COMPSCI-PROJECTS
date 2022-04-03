@@ -11,14 +11,7 @@ using namespace std;
 const int SIZE = 20;
 
 //creating arrays for the book info
-char bookTitle[SIZE][51];
-char isbn[SIZE][14];
-char author[SIZE][31];
-char publisher[SIZE][31];
-char dateAdded[SIZE][11];
-int qtyOnHand[SIZE];
-double wholesale[SIZE];
-double retail[SIZE];
+BookData book[SIZE];
 
 int main(){
     printMenu();

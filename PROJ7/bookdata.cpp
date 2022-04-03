@@ -1,44 +1,45 @@
-struct BookData {
-    #include "bookdata.h"
+#include "bookdata.h"
 
-    char bookTitle[51];
-    char isbn[14];
-    char author[31];
-    char publisher[31];
-    char dateAdded[11];
-    int qtyOnHand;
-    double wholesale;
-    double retail;
+BookData::BookData(){
+    bookTitle[0] = '\0';
+    isbn[0] = '\0';
+    author[0] = '\0';
+    publisher[0] = '\0';
+    dateAdded[0] = '\0';
+    qtyOnHand = 0;
+    wholesale = 0.0;
+    retail = 0.0;
+}
 
-    void setTitle(str *title, int i) {
-        strcpy(bookTitle[i], title);
-    }
+void BookData::setTitle(string title){
+    strcpy(bookTitle, title.c_str());
+}
 
-    void setIsbn(str *isbn, int i) {
-        strcpy(isbn[i], isbn);
-    }
+void BookData::setIsbn(string isbn){
+    strcpy(this->isbn, isbn.c_str());
+}
 
-    void setAuthor(str *author, int i) {
-        strcpy(author[i], author);
-    }
+void BookData::setAuthor(string author){
+    strcpy(this->author, author.c_str());
+}
 
-    void setPub(str *pub, int i) {
-        strcpy(publisher[i], pub);
-    }
+void BookData::setPublisher(string publisher){
+    strcpy(this->publisher, publisher.c_str());
+}
 
-    void setDateAdded(str *date, int i) {
-        strcpy(dateAdded[i], date);
-    }
+void BookData::setDateAdded(string dateAdded){
+    strcpy(this->dateAdded, dateAdded.c_str());
+}
 
-    void setQty(int qty, int i) {
-        qtyOnHand[i] = qty;
-    }
+void BookData::setQtyOnHand(int qtyOnHand){
+    this->qtyOnHand = qtyOnHand;
+}
 
-    void setWholesale(double w, int i) {
-        wholesale[i] = w;
-    }
+void BookData::setWholesale(double wholesale){
+    this->wholesale = wholesale;
+}
 
-    void setRetail(double r, int i) {
-        retail[i] = r;
-    }
-};
+void BookData::setRetail(double retail){
+    this->retail = retail;
+}
+

@@ -4,17 +4,11 @@
 #include <iostream>
 #include <iomanip>
 #include <cctype>
+#include "bookdata.h"
 
 using namespace std;
 
-extern char bookTitle[][51];
-extern char isbn[][14];
-extern char author[][31];
-extern char publisher[][31];
-extern char dateAdded[][11];
-extern int qtyOnHand[];
-extern double wholesale[];
-extern double retail[];
+extern BookData book[];
 
 //prototypes
 void invMenu();

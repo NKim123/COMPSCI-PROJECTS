@@ -52,26 +52,26 @@ void invMenu() {
 void addBook() {
     //for loop to search the arrays for an empty slot
     for (int i = 0; i < SIZE; i++) {
-        if (strcmp(bookTitle[i], "") == 0) {
+        if (strcmp(book[i].bookTitle, "") == 0) {
             cout << "Enter the book title: ";
             cin.ignore();
-            cin.getline(bookTitle[i], 51);
+            cin.getline(book[i].bookTitle, 51);
             cout << "Enter the ISBN: ";
-            cin.getline(isbn[i], 14);
+            cin.getline(book[i].isbn, 14);
             cout << "Enter the author: ";
-            cin.getline(author[i], 31);
+            cin.getline(book[i].author, 31);
             cout << "Enter the publisher: ";
-            cin.getline(publisher[i], 31);
+            cin.getline(book[i].publisher, 31);
             cout << "Enter the date added: ";
-            cin.getline(dateAdded[i], 11);
+            cin.getline(book[i].dateAdded, 11);
             cout << "Enter the quantity on hand: ";
-            cin >> qtyOnHand[i];
+            cin >> book[i].qtyOnHand;
             cout << "Enter the wholesale cost: ";
-            cin >> wholesale[i];
+            cin >> book[i].wholesale;
             cout << "Enter the retail price: ";
-            cin >> retail[i];
-            strUpper(bookTitle[i]);
-            cout << "Added book " << bookTitle[i] << " to inventory.\n";
+            cin >> book[i].retail;
+            strUpper(book[i].bookTitle);
+            cout << "Added book " << book[i].bookTitle << " to inventory.\n";
             return;
         }
     }    
@@ -86,8 +86,8 @@ void lookUpBook(){
     strUpper(searchBook);
     //for loop to search the arrays for the book
     for (int i = 0; i < SIZE; i++) {
-        if (strstr(bookTitle[i], searchBook)) {
-            cout << "Possible match found: " << bookTitle[i] << endl;
+        if (strstr(book[i].bookTitle, searchBook)) {
+            cout << "Possible match found: " << book[i].bookTitle << endl;
             cout << "Is this correct? (y/n): ";
             char choice;
             cin >> choice;
@@ -97,7 +97,7 @@ void lookUpBook(){
                 cin >> choice;
             }
             if (choice == 'y'){
-                bookInfo(isbn[i], bookTitle[i], author[i], publisher[i], dateAdded[i], qtyOnHand[i], wholesale[i], retail[i], true);
+                bookInfo(book[i].isbn, book[i].bookTitle, book[i].author, book[i].publisher, book[i].dateAdded, book[i].qtyOnHand, book[i].wholesale, book[i].retail, true);
                 return;
             }
             if (i == SIZE - 1) {
@@ -117,8 +117,8 @@ void editBook() {
     cin.getline(editBook, 51);
     //for loop to search the arrays for the book to edit
     for (int i = 0; i < SIZE; i++) {
-        if (strstr(bookTitle[i], editBook)) {
-            cout << "Possible match found: " << bookTitle[i] << endl;
+        if (strstr(book[i].bookTitle, editBook)) {
+            cout << "Possible match found: " << book[i].bookTitle << endl;
             cout << "Is this correct? (y/n): ";
             char cont;
             cin >> cont;
@@ -129,7 +129,7 @@ void editBook() {
             }
             if(cont == 'y'){
                 //printing the book info
-                bookInfo(isbn[i], bookTitle[i], author[i], publisher[i], dateAdded[i], qtyOnHand[i], wholesale[i], retail[i], true);
+                bookInfo(book[i].isbn, book[i].bookTitle, book[i].author, book[i].publisher, book[i].dateAdded, book[i].qtyOnHand, book[i].wholesale, book[i].retail, true);
                 cout << "Which field do you want to edit?\n";
                 cout << "1.  Book Title\n2.  ISBN\n3.  Author\n4.  Publisher\n5.  Date Added\n6.  Quantity On Hand\n7.  Wholesale Cost\n8.  Retail Price\n9.  Cancel\n\nEnter your choice: ";
                 cin >> choice;
@@ -138,35 +138,35 @@ void editBook() {
                 switch (choice) {
                     case 1:
                         cout << "Enter the new book title: ";
-                        cin.getline(bookTitle[i], 51);
+                        cin.getline(book[i].bookTitle, 51);
                         break;
                     case 2:
                         cout << "Enter the new ISBN: ";
-                        cin.getline(isbn[i], 14);
+                        cin.getline(book[i].isbn, 14);
                         break;
                     case 3:
                         cout << "Enter the new author: ";
-                        cin.getline(author[i], 31);
+                        cin.getline(book[i].author, 31);
                         break;
                     case 4:
                         cout << "Enter the new publisher: ";
-                        cin.getline(publisher[i], 31);
+                        cin.getline(book[i].publisher, 31);
                         break;
                     case 5:
                         cout << "Enter the new date added: ";
-                        cin.getline(dateAdded[i], 11);
+                        cin.getline(book[i].dateAdded, 11);
                         break;
                     case 6:
                         cout << "Enter the new quantity on hand: ";
-                        cin >> qtyOnHand[i];
+                        cin >> book[i].qtyOnHand;
                         break;
                     case 7:
                         cout << "Enter the new wholesale cost: ";
-                        cin >> wholesale[i];
+                        cin >> book[i].wholesale;
                         break;
                     case 8:
                         cout << "Enter the new retail price: ";
-                        cin >> retail[i];
+                        cin >> book[i].retail;
                         break;
                     case 9:
                         cout << "Canceled.\n";
@@ -178,7 +178,7 @@ void editBook() {
             } else if(cont == 'n') {
                 
             }
-            cout << "Book " << bookTitle[i] << " has been edited.\n";
+            cout << "Book " << book[i].bookTitle << " has been edited.\n";
             return;
         }
     }
@@ -193,16 +193,16 @@ void deleteBook() {
     cin.getline(deleteBook, 51);
     //for loop to search the arrays for the book to delete
     for (int i = 0; i < SIZE; i++) {
-        if (strstr(bookTitle[i], deleteBook)) {
-            strcpy(bookTitle[i], "");
-            strcpy(isbn[i], "");
-            strcpy(author[i], "");
-            strcpy(publisher[i], "");
-            strcpy(dateAdded[i], "");
-            qtyOnHand[i] = 0;
-            wholesale[i] = 0;
-            retail[i] = 0;
-            cout << "Book " << bookTitle[i] << " has been deleted.\n";
+        if (strstr(book[i].bookTitle, deleteBook)) {
+            strcpy(book[i].bookTitle, "");
+            strcpy(book[i].isbn, "");
+            strcpy(book[i].author, "");
+            strcpy(book[i].publisher, "");
+            strcpy(book[i].dateAdded, "");
+            book[i].qtyOnHand = 0;
+            book[i].wholesale = 0;
+            book[i].retail = 0;
+            cout << "Book " << book[i].bookTitle << " has been deleted.\n";
             return;
         }
     }

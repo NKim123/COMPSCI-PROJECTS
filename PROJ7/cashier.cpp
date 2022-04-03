@@ -33,23 +33,25 @@ void cashier(){
 
                 //searching for isbn inside global isbn array
                 for (int i = 0; i < SIZE; i++) {
-                    if (strcmp(isbn[index], ::isbn[i])) {
-                        strcpy(title[index], bookTitle[i]);
-                        price[index] = retail[i];
+                    if (strcmp(isbn[index], book[i].isbn) == 0) {
+                        cout << isbn[index] << "\t" << book[i].isbn << endl;
+                        strcpy(title[index], book[i].bookTitle);
+                        price[index] = book[i].retail;
                         cout << "found book: " << title[index] << endl; 
                         //checking quantity
                         cout << "Enter the quantity: ";
                         cin >> quantity[index];
-                        while (quantity[index] > qtyOnHand[i]) {
+                        while (quantity[index] > book[i].qtyOnHand) {
                             cout << "Not enough quantity on hand. Please enter new quantity: \n";
                             cin >> quantity[index];
                         }
+                        book[i].qtyOnHand -= quantity[index];
                         cout << "Added book" << endl;
                         total[index] = (price[index] * quantity[index]);
                         a = "n";
                         break;
                     }
-                    if (index == SIZE-1) {
+                    if (i == SIZE-1) {
                         cout << "Book not found, try again? (y/n): ";
                         cin >> a;
                         //clearing cin
@@ -79,7 +81,6 @@ void cashier(){
                 break;
             } else {
                 index++;
-                cout << index << endl << endl;
             }
 
         }
