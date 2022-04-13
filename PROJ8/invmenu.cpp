@@ -72,6 +72,12 @@ void addBook() {
             cin >> book[i].retail;
             strUpper(book[i].bookTitle);
             cout << "Added book " << book[i].bookTitle << " to inventory.\n";
+            //syncing the file and the array
+            fstream invFile("inventory.dat", ios::out | ios::binary);
+            for (int i = 0; i < SIZE; i++) {
+                invFile.seekg(i * sizeof(book[i]));
+                invFile.write(reinterpret_cast<char *>(&book[i]), sizeof(book[i]));
+            }
             return;
         }
     }    
@@ -115,6 +121,7 @@ void editBook() {
     cout << "What book do you want to edit? ";
     cin.ignore();
     cin.getline(editBook, 51);
+    strUpper(editBook);
     //for loop to search the arrays for the book to edit
     for (int i = 0; i < SIZE; i++) {
         if (strstr(book[i].bookTitle, editBook)) {
@@ -175,11 +182,15 @@ void editBook() {
                         cout << "Invalid choice.\n";
                         break;
                 }
-            } else if(cont == 'n') {
-                
-            }
             cout << "Book " << book[i].bookTitle << " has been edited.\n";
+            //syncing the file and the array
+            fstream invFile("inventory.dat", ios::out | ios::binary);
+            for (int i = 0; i < SIZE; i++) {
+                invFile.seekg(i * sizeof(book[i]));
+                invFile.write(reinterpret_cast<char *>(&book[i]), sizeof(book[i]));
+            }
             return;
+            }
         }
     }
     cout << "Book not found.\n";
@@ -188,13 +199,33 @@ void editBook() {
 //deletes book from the inventory
 void deleteBook() {
     char deleteBook[51];
-    cout << "What book do you want to delete?\n";
+    cout << "What book do you want to delete? ";
     cin.ignore();
     cin.getline(deleteBook, 51);
+    strUpper(deleteBook);
     //for loop to search the arrays for the book to delete
     for (int i = 0; i < SIZE; i++) {
         if (strstr(book[i].bookTitle, deleteBook)) {
-            book[i].removeBook();
+            cout << "Possible match found: " << book[i].bookTitle << endl;
+            cout << "Is this correct? (y/n): ";
+            char cont;
+            cin >> cont;
+            while(cont != 'y' && cont != 'n') {
+                cout << "Invalid input. Please try again.\n";
+                cout << "Is this correct? (y/n): ";
+                cin >> cont;
+            }
+            if (cont == 'y'){
+                book[i].removeBook();
+                //syncing the file and the array
+                fstream invFile("inventory.dat", ios::out | ios::binary);
+                for (int i = 0; i < SIZE; i++) {
+                    invFile.seekg(i * sizeof(book[i]));
+                    invFile.write(reinterpret_cast<char *>(&book[i]), sizeof(book[i]));
+                }
+                cout << "Book " << book[i].bookTitle << " has been deleted.\n";
+                return;
+            }
         }
     }
     cout << "Book not found.\n";
