@@ -5,13 +5,14 @@
 #include "reports.h"
 #include "invmenu.h"
 #include "mainmenu.h"
+#include "inventorybook.h"
 
 using namespace std;
 
 const int SIZE = 20;
 
 //creating arrays for the book info
-BookData book[SIZE];
+InvBook book[SIZE];
 
 //associating the datafile and creating fstream object
 fstream invFile;

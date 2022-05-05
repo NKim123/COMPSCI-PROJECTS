@@ -13,10 +13,6 @@ class BookData {
         char isbn[14];
         char author[31];
         char publisher[31];
-        char dateAdded[11];
-        int qtyOnHand;
-        double wholesale;
-        double retail;
         friend class InvBook;
 
     public:
@@ -25,22 +21,6 @@ class BookData {
         void setIsbn(string isbn);
         void setAuthor(string author);
         void setPublisher(string publisher);
-        void setDateAdded(string dateAdded);
-        void setQtyOnHand(int qtyOnHand);
-        void setWholesale(double wholesale);
-        void setRetail(double retail);
-        char* getTitle();
-        char* getIsbn();
-        char* getAuthor();
-        char* getPublisher();
-        char* getDateAdded();
-        int getQtyOnHand();
-        double getWholesale();
-        double getRetail();
-
-        int isEmpty();
-        void removeBook();
-        bool bookMatch(char* title);
 };
 
 

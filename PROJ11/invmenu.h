@@ -11,7 +11,7 @@
 using namespace std;
 
 //making the array global so it can be accessed by other functions
-extern BookData book[];
+extern InvBook book[];
 
 //the data file
 extern fstream invFile;

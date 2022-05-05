@@ -8,31 +8,20 @@
 
 class SoldBook : public InvBook {
     private:
-        const static double TAX_RATE = 0.06;
+        static double TAX_RATE;
         int qtySold;
         double tax, subtotal;
-        const static double total;
+        static double total;
 
     public:
         SoldBook();
-        void setDateSold(string dateSold);
         void setQtySold(int qtySold);
-        void setTotal(double total);
-        char* getTitle();
-        char* getIsbn();
-        char* getAuthor();
-        char* getPublisher();
-        char* getDateAdded();
-        int getQtyOnHand();
-        double getWholesale();
-        double getRetail();
-        char* getDateSold();
+        double setTax();
+        double setSubtotal();
         int getQtySold();
+        double getTax();
         double getTotal();
-
-        int isEmpty();
-        void removeBook();
-        bool bookMatch(char* title);
+        void addTotal(double total);
 };
 
 #endif
