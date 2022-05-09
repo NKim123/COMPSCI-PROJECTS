@@ -29,8 +29,14 @@ void cashier(){
         cin >> quant;
         cin.ignore();
 
-        //creating dynamically allocated array of sold books
-        SoldBook *bookList = new SoldBook[quant];
+        //creating dynamically allocated array of sold books and catching any errors
+        SoldBook *bookList;
+        try {
+             bookList = new SoldBook[quant];
+        } catch (exception e){
+            cout << "Error, bad memory allocation, aborting...";
+            return;
+        }
         //looping through to add books to the sold book array
         for (int i = 0; i < quant; i++) {
             string a = "y";
